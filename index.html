@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>La bouffe du vendredi chez bpost</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #cc0000;
+      background-image: url('background.png');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 0 15px;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(204, 0, 0, 0.6);
+      z-index: 0;
+    }
+    h1 {
+      position: relative;
+      z-index: 1;
+      font-size: 2.2rem;
+      font-weight: bold;
+      margin-bottom: 25px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      padding: 0 15px;
+    }
+    .button {
+      background-color: white;
+      color: #cc0000;
+      border: none;
+      border-radius: 8px;
+      padding: 15px 40px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      transition: background-color 0.3s, color 0.3s;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .button:hover:not(.disabled) {
+      background-color: #990000;
+      color: white;
+    }
+    .disabled {
+      background-color: #eee;
+      color: #999;
+      cursor: not-allowed;
+      box-shadow: none;
+      pointer-events: none;
+      text-decoration: none;
+    }
+    @media (max-width: 500px) {
+      body {
+        background-size: cover;
+        background-position: center center;
+      }
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+      .button {
+        font-size: 1.2rem;
+        padding: 12px 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>La bouffe du vendredi chez bpost</h1>
+  <div class="container">
+    <a id="btn-pizza" href="https://docs.google.com/forms/d/e/1FAIpQLSfhI17Mvc8zuwkRXJbqCO0OAJpMaYPqs_2GfawLA-dDdz-S9g/viewform?usp=header" target="_blank" class="button">pizza & pâtes</a>
+    <a id="btn-chinois" href="https://docs.google.com/forms/d/e/1FAIpQLSfOTUCre2AhwfnyJbkC_yifuEw8SBDqtH1qssY4uHxXod-5ng/viewform?usp=header" target="_blank" class="button">Chinois</a>
+  </div>
+
+  <script>
+    const today = new Date();
+    const day = today.getDate();
+
+    const btnPizza = document.getElementById('btn-pizza');
+    const btnChinois = document.getElementById('btn-chinois');
+
+    if(day >= 1 && day <= 7) {
+      btnChinois.classList.remove('disabled');
+      btnChinois.href = "https://docs.google.com/forms/d/e/1FAIpQLSfOTUCre2AhwfnyJbkC_yifuEw8SBDqtH1qssY4uHxXod-5ng/viewform?usp=header";
+      btnChinois.style.pointerEvents = 'auto';
+
+      btnPizza.classList.add('disabled');
+      btnPizza.removeAttribute('href');
+      btnPizza.style.pointerEvents = 'none';
+    } else {
+      btnPizza.classList.remove('disabled');
+      btnPizza.href = "https://docs.google.com/forms/d/e/1FAIpQLSfhI17Mvc8zuwkRXJbqCO0OAJpMaYPqs_2GfawLA-dDdz-S9g/viewform?usp=header";
+      btnPizza.style.pointerEvents = 'auto';
+
+      btnChinois.classList.add('disabled');
+      btnChinois.removeAttribute('href');
+      btnChinois.style.pointerEvents = 'none';
+    }
+  </script>
+</body>
+</html>
